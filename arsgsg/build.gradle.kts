@@ -24,6 +24,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	//p6spy
+	implementation ("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1")
 }
 
 tasks.withType<KotlinCompile> {
