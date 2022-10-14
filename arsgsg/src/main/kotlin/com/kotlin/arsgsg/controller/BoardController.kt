@@ -1,6 +1,6 @@
 package com.kotlin.arsgsg.controller
 
-import com.kotlin.arsgsg.application.dto.BoardService
+import com.kotlin.arsgsg.application.BoardService
 import com.kotlin.arsgsg.application.dto.CreateBoardDto
 import com.kotlin.arsgsg.application.dto.GetBoardDetailDto
 import com.kotlin.arsgsg.application.dto.GetBoardListDto

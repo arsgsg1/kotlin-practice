@@ -1,5 +1,9 @@
-package com.kotlin.arsgsg.application.dto
+package com.kotlin.arsgsg.application
 
+import com.kotlin.arsgsg.application.dto.CreateBoardDto
+import com.kotlin.arsgsg.application.dto.GetBoardDetailDto
+import com.kotlin.arsgsg.application.dto.GetBoardListDto
+import com.kotlin.arsgsg.application.dto.fromEntity
 import com.kotlin.arsgsg.domain.Board
 import com.kotlin.arsgsg.exception.EntityNotFoundException
 import com.kotlin.arsgsg.infra.BoardRepository
