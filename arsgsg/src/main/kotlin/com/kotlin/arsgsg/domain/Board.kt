@@ -11,7 +11,7 @@ class Board(
     var title: String,
     @Column(name = "content")
     var content: String
-) {
+) : BaseEntity() {
     fun updateBoard(title: String, content: String) {
         this.title = title
         this.content = content

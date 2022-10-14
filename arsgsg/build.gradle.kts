@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	id("org.springframework.boot") version "2.7.4"
 	id("io.spring.dependency-management") version "1.0.14.RELEASE"
+	id("org.jetbrains.kotlin.plugin.allopen") version "1.3.61"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
 	kotlin("plugin.jpa") version "1.6.21"
@@ -27,6 +28,16 @@ dependencies {
 
 	//p6spy
 	implementation ("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1")
+}
+
+noArg {
+	annotation("javax.persistence.Entity")
+}
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.MappedSuperclass")
+	annotation("javax.persistence.Embeddable")
 }
 
 tasks.withType<KotlinCompile> {
