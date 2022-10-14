@@ -18,7 +18,7 @@ class GetBoardTest @Autowired constructor(
 
     @BeforeEach
     fun beforeEach() {
-        for (i in 1..6){
+        for (i in 1..6) {
             boardRepository.save(Board(title = "title$i", content = "content$i"))
         }
     }
@@ -33,12 +33,21 @@ class GetBoardTest @Autowired constructor(
     }
 
     @Test
-    fun 보드_개별_조회시__개별보드와_200을_반환한다(){
+    fun 보드_개별_조회시__개별보드와_200을_반환한다() {
         mockMvc.perform(get("/boards/1"))
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.title").isString)
             .andExpect(jsonPath("$.content").isString)
             .andExpect(jsonPath("$.id").isNumber)
+            .andDo(print())
+    }
+
+    @Test
+    fun 보드가_없다면_에러메시지와_400을_반환한다() {
+        mockMvc.perform(get("/boards/100"))
+            .andExpect(status().isBadRequest)
+            .andExpect(jsonPath("$.code").isNotEmpty)
+            .andExpect(jsonPath("$.description").isString)
             .andDo(print())
     }
 }
