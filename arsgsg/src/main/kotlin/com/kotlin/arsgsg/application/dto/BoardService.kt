@@ -1,6 +1,7 @@
 package com.kotlin.arsgsg.application.dto
 
 import com.kotlin.arsgsg.domain.Board
+import com.kotlin.arsgsg.exception.EntityNotFoundException
 import com.kotlin.arsgsg.infra.BoardRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
@@ -15,14 +16,16 @@ class BoardService(val boardRepository: BoardRepository) {
 
     @Transactional
     fun updateBoardById(boardId: Long, dto: CreateBoardDto): GetBoardDetailDto? {
-        var existingBoard = boardRepository.findById(boardId).orElseThrow()
+        var existingBoard =
+            boardRepository.findById(boardId).orElseThrow { throw EntityNotFoundException() }
         existingBoard.updateBoard(dto.title, dto.content)
         return fromEntity(boardRepository.save(existingBoard))
     }
 
     @Transactional(readOnly = true)
     fun getBoardById(boardId: Long): GetBoardDetailDto? {
-        return fromEntity(boardRepository.findById(boardId).orElseThrow())
+        return fromEntity(
+            boardRepository.findById(boardId).orElseThrow { throw EntityNotFoundException() })
     }
 
     @Transactional(readOnly = true)
